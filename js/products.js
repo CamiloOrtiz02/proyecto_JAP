@@ -1,15 +1,13 @@
 //! CAR PRODUCTS URL
-const URL_PROD = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
 
 //! GET DATA FROM URL
 document.addEventListener("DOMContentLoaded", (e) =>{
-    console.log(e);
     let element = document.querySelector('main');
     // EMPTY "MAIN"
     element.innerHTML = '';
 
     getJSONData(URL_PROD).then((RESOLVED) => {
-
         if (RESOLVED.status === 'ok') {
             //! RESOLVED: STATUS, DATA {catID, catName, products[]}
             showHeader(RESOLVED.data)
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", (e) =>{
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">${elem.name} - ${elem.currency} ${elem.cost}</h4>
-                        <small class="text-muted">${elem.soldCount} artículos</small>
+                        <small class="text-muted">${elem.soldCount} vendidos</small>
                     </div>
                     <p class="mb-1">${elem.description}</p>
                 </div>
