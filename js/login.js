@@ -21,12 +21,24 @@ btnSubmit.addEventListener('click', (e) => {
     
     if (!validMail) {
         document.getElementById('emailAlert').classList.remove('visually-hidden');
+        document.getElementById('mailID').classList.add('border-danger');
     } else {
         document.getElementById('emailAlert').classList.add('visually-hidden');
+        document.getElementById('mailID').classList.remove('border-danger');
+    }
+
+    if (!validPass) {
+        //document.getElementById('alertBox').classList.remove('visually-hidden');
+        document.getElementById('passAlert').classList.remove('visually-hidden');
+        document.getElementById('passID').classList.add('border-danger');
+    } else {
+        //document.getElementById('alertBox').classList.add('visually-hidden');
+        document.getElementById('passAlert').classList.add('visually-hidden');
+        document.getElementById('passID').classList.remove('border-danger');
     }
 
     if (validMail && validPass) {
-        window.location.href = '../main.html';
+        window.location.href = 'main.html';
     }
 });
 
@@ -40,7 +52,13 @@ function requirementsPassword(pass) {
         exp.num.test(pass.value),
     ];
 
+    for (const elem of values) {
+        flag = flag && elem;
+    }
+    return flag;
+    /*
     for (let i = 0; i < values.length; i++) {
+        
         if (values[i]) {
             document.getElementById(`${i}`).classList.remove('text-danger');
             document.getElementById(`${i}`).classList.add('text-success');
@@ -50,6 +68,5 @@ function requirementsPassword(pass) {
         }
         flag = flag && values[i];
     }
-
-    return flag;
+    */
 }
