@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <script src="https://kit.fontawesome.com/0e1bd20856.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: rgb(248, 249, 250);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="mt-5">
+    <div class="container text-center form-signing">
+        <img src = "img/login.png" alt="login.png" class="w-50">
+        <h1 class="fw-bolder h4">Iniciar Sesión</h1>
+        <br>
+        <form action="index.html">
+          <label for="user" class="h5 fw-normal">Correo Electronico</label>
+          <br>
+            <input type="email" name="user"  required id="mailID" class="form-control w-25 m-auto">
+            <p id="emailAlert" class="alert-danger m-auto w-25 visually-hidden">Correo invalido</p>
+          <br><br>
+          <label for="pass" class="h5 fw-normal">Contraseña: </label>
+          <br>
+            <input type="password" name="pass" required minlength="8" id="passID" class="form-control w-25 m-auto">
+            <p id = 'passAlert' class="alert-danger m-auto w-25 visually-hidden">Contraseña Incorrecta</p>
+            <div id="alertBox" class="alert-danger m-auto w-50 visually-hidden">
+              <p class="fw-bolder text-decoration-underline h6">Requerimientos: </p>
+              <ul id="list" class=" small text-start">
+                <li id="0" class ="text-danger fw-bold p-2">8 caracteres</li>
+                <li id="1" class ="text-danger fw-bold p-2">1 Mayuscula</li>
+                <li id="2" class ="text-danger fw-bold p-2">1 Minuscula</li>
+                <li id="3" class ="text-danger fw-bold p-2">1 Simbolo</li>
+                <li id="4" class ="text-danger fw-bold p-2">1 Numero</li>
+              </ul>
+            </div>
+          <br>
+          <button type="submit" id="btnSubmit" class="btn btn-lg btn-success">Ingresar</button>
+        </form>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-end">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
+        2022</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+  <script src="js/login.js"></script>
+</body>
+
+</html>

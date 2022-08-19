@@ -13,7 +13,6 @@ const emailExp = /^[a-zA-Z0-9\.\_\-\+\&\#]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
 const btnSubmit = document.getElementById('btnSubmit');
 
 btnSubmit.addEventListener('click', (e) => {
-    e.preventDefault();
     const email = document.getElementById('mailID');
     const pass = document.getElementById('passID');
     let validMail = emailExp.test(email.value);
@@ -38,7 +37,9 @@ btnSubmit.addEventListener('click', (e) => {
     }
 
     if (validMail && validPass) {
-        window.location.href = 'main.html';
+        email.value = '*';
+        pass.value = '*';
+        window.location.href = 'index.html';
     }
 });
 

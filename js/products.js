@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", (e) =>{
             showProducts(RESOLVED.data, RESOLVED.data.products);
         }
     });
-
+});
 
     //! SHOW HEADER
     function showHeader(data) {
@@ -63,5 +63,3 @@ document.addEventListener("DOMContentLoaded", (e) =>{
         //! INSERT DATA AS ROWS
         document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
     }
-});
-
