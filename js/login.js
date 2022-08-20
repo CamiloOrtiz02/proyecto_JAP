@@ -13,6 +13,7 @@ const emailExp = /^[a-zA-Z0-9\.\_\-\+\&\#]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
 const btnSubmit = document.getElementById('btnSubmit');
 
 btnSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
     const email = document.getElementById('mailID');
     const pass = document.getElementById('passID');
     let validMail = emailExp.test(email.value);
@@ -37,8 +38,7 @@ btnSubmit.addEventListener('click', (e) => {
     }
 
     if (validMail && validPass) {
-        email.value = '*';
-        pass.value = '*';
+        sessionStorage.setItem('p', true);
         window.location.href = 'index.html';
     }
 });
@@ -57,7 +57,20 @@ function requirementsPassword(pass) {
         flag = flag && elem;
     }
     return flag;
-    /*
+}
+
+
+
+    //! Esto se utilizara para el registro de usuario
+    //! This will use
+    //* Muestra los errores especificos de la password
+    /**
+     * * 8 CARACTERES
+     * * 1 MAYUSCULA
+     * * 1 MINUSCULA
+     * * 1 SIMBOLO
+     * * 1 NUMERO
+     * 
     for (let i = 0; i < values.length; i++) {
         
         if (values[i]) {
@@ -70,4 +83,3 @@ function requirementsPassword(pass) {
         flag = flag && values[i];
     }
     */
-}
