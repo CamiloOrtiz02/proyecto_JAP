@@ -31,13 +31,10 @@ document.addEventListener("DOMContentLoaded", (e) =>{
                 </div>
             </div>
             `;
-
     }
 
     //! SHOW DATA
     function showProducts (data, products){
-        
-
         let prod = '';
 
         //! SAVE DATA OF PRODUCTS
@@ -59,7 +56,6 @@ document.addEventListener("DOMContentLoaded", (e) =>{
         </div>
             `;
         }
-
         //! INSERT DATA AS ROWS
         document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
     }

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(e){
     
-    if (sessionStorage.getItem('p') == null) {
+    if (sessionStorage.getItem('isLogin') == null) {
         window.location.href = 'login.html';
     }
     

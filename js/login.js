@@ -14,11 +14,16 @@ const btnSubmit = document.getElementById('btnSubmit');
 
 btnSubmit.addEventListener('click', (e) => {
     e.preventDefault();
+    //! Save the inputs of Email & Password
     const email = document.getElementById('mailID');
     const pass = document.getElementById('passID');
+
+    //! Return verification of Email
     let validMail = emailExp.test(email.value);
+    //! Return verification of Password
     let validPass = requirementsPassword(pass);
     
+    //! Show message as appropriate case
     if (!validMail) {
         document.getElementById('emailAlert').classList.remove('visually-hidden');
         document.getElementById('mailID').classList.add('border-danger');
@@ -38,11 +43,12 @@ btnSubmit.addEventListener('click', (e) => {
     }
 
     if (validMail && validPass) {
-        sessionStorage.setItem('p', true);
+        sessionStorage.setItem('isLogin', true);
         window.location.href = 'index.html';
     }
 });
 
+//! Validate if the password meets the requirements
 function requirementsPassword(pass) {
     let flag = true;
     let values = [
@@ -58,11 +64,8 @@ function requirementsPassword(pass) {
     }
     return flag;
 }
-
-
-
     //! Esto se utilizara para el registro de usuario
-    //! This will use
+    //! This will use to the user register
     //* Muestra los errores especificos de la password
     /**
      * * 8 CARACTERES
