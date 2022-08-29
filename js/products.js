@@ -1,5 +1,6 @@
 //! CAR PRODUCTS URL
 const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
+let flagByRel = true;
 let data = '';
 let arrayListProd = [];
 let copyOriginProd = [];
@@ -70,15 +71,46 @@ document.addEventListener("DOMContentLoaded", () =>{
      */
 
     document.getElementById('sortAsc').addEventListener('click', () =>{
-            showProducts(sortProd('priceAsc'));
+        document.getElementById('labelSortDesc').classList.remove('btn-dark');
+        document.getElementById('labelSortByCount').classList.remove('btn-dark');
+        document.getElementById('labelSortAsc').classList.add('btn-dark');
+
+        showProducts(sortProd('priceAsc'));
     });
 
     document.getElementById('sortDesc').addEventListener('click', () =>{
+        document.getElementById('labelSortAsc').classList.remove('btn-dark');
+        document.getElementById('labelSortByCount').classList.remove('btn-dark');
+        document.getElementById('labelSortDesc').classList.add('btn-dark');
+
         showProducts(sortProd('priceDesc'));
     });
 
-    document.getElementById('sortDesc').addEventListener('click', () =>{
-        showProducts(sortProd('sortByCount'));
+    document.getElementById('sortByCount').addEventListener('click', () =>{
+        document.getElementById('labelSortDesc').classList.remove('btn-dark');
+        document.getElementById('labelSortAsc').classList.remove('btn-dark');
+        document.getElementById('labelSortByCount').classList.add('btn-dark');
+
+        if (flagByRel) {
+            document.getElementById('iconRel').classList.remove('fa-sort-amount-down');
+            document.getElementById('iconRel').classList.add('fa-sort-amount-up');
+            showProducts(sortProd('sortByCountAsc'));
+            flagByRel = false
+        }else{
+            
+            document.getElementById('iconRel').classList.remove('fa-sort-amount-up');
+            document.getElementById('iconRel').classList.add('fa-sort-amount-down');
+            showProducts(sortProd('sortByCountDesc'));
+            flagByRel = true
+        }
+    });
+
+    document.getElementById('rangeFilterCount').addEventListener('click', () =>{
+        let inpNum = document.querySelectorAll('input[type="number"]');
+        
+        if(inpNum[0].value > inpNum[1].value){
+            console.log(inpNum);
+        }
     });
 
     function sortProd(criteria) {
@@ -100,10 +132,18 @@ document.addEventListener("DOMContentLoaded", () =>{
             });
         }
 
-        if (criteria === 'rel') {
+        if (criteria === 'sortByCountAsc') {
             result = arrayListProd.sort((a, b) => {
-                if (a.cost > b.cost) {return 1}
-                if (a.cost < b.cost) {return -1}
+                if (a.soldCount < b.soldCount) {return 1}
+                if (a.soldCount > b.soldCount) {return -1}
+                return 0;
+            });
+        }
+
+        if (criteria === 'sortByCountDesc') {
+            result = arrayListProd.sort((a, b) => {
+                if (a.soldCount > b.soldCount) {return 1}
+                if (a.soldCount < b.soldCount) {return -1}
                 return 0;
             });
         }
