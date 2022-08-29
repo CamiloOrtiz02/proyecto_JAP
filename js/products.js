@@ -1,40 +1,39 @@
 //! CAR PRODUCTS URL
 const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
+let data = '';
+let arrayListProd = [];
+let copyOriginProd = [];
 
 //! GET DATA FROM URL
-document.addEventListener("DOMContentLoaded", (e) =>{
-    let element = document.querySelector('main');
-    // EMPTY "MAIN"
-    element.innerHTML = '';
-
+document.addEventListener("DOMContentLoaded", () =>{
     getJSONData(URL_PROD).then((RESOLVED) => {
         if (RESOLVED.status === 'ok') {
             //! RESOLVED: STATUS, DATA {catID, catName, products[]}
-            showHeader(RESOLVED.data)
-            showProducts(RESOLVED.data, RESOLVED.data.products);
+            data = RESOLVED.data;
+            changeDataHeader(data);
+            
+            //! SAVE COPY FROM PRODUCTS[]
+            for (const elem of data.products) {
+                copyOriginProd.push(elem);
+            }
+            console.log(copyOriginProd);
+
+            //! SAVE ELEMENTS FOR REFERENCE FROM PRODUCTS[]
+            arrayListProd = data.products;
+            
+            showProducts(data.products);
         }
     });
 });
 
     //! SHOW HEADER
-    function showHeader(data) {
-        //! INSERT DEFAULT DATA IN THE MAIN 
-        document.querySelector('main').innerHTML = `
-            <div class= "text-center p-4">
-                <h2>Productos</h2>
-                <p class= "lead">Veras aqui todos los productos de categoria ${data.catName}</p>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="list-group" id="list-prod-${data.catName}">
-                    </div>
-                </div>
-            </div>
-            `;
+    function changeDataHeader() {
+        document.getElementById('catNameHeader').textContent = data.catName;
+        document.getElementById('list-prod-').setAttribute('id', `list-prod-${data.catName}`);
     }
 
     //! SHOW DATA
-    function showProducts (data, products){
+    function showProducts (products){
         let prod = '';
 
         //! SAVE DATA OF PRODUCTS
@@ -58,4 +57,56 @@ document.addEventListener("DOMContentLoaded", (e) =>{
         }
         //! INSERT DATA AS ROWS
         document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
+    }
+
+
+
+    /*
+     * sortAsc
+     * sortDesc
+     * sortByCount
+     * rangeFilterCountMin
+     * rangeFilterCountMax
+     */
+
+    document.getElementById('sortAsc').addEventListener('click', () =>{
+            showProducts(sortProd('priceAsc'));
+    });
+
+    document.getElementById('sortDesc').addEventListener('click', () =>{
+        showProducts(sortProd('priceDesc'));
+    });
+
+    document.getElementById('sortDesc').addEventListener('click', () =>{
+        showProducts(sortProd('sortByCount'));
+    });
+
+    function sortProd(criteria) {
+        let result = [];
+
+        if (criteria === 'priceAsc') {
+            result = arrayListProd.sort((a, b) => {
+                if (a.cost < b.cost) {return 1}
+                if (a.cost > b.cost) {return -1}
+                return 0;
+            });
+        }
+
+        if (criteria === 'priceDesc') {
+            result = arrayListProd.sort((a, b) => {
+                if (a.cost > b.cost) {return 1}
+                if (a.cost < b.cost) {return -1}
+                return 0;
+            });
+        }
+
+        if (criteria === 'rel') {
+            result = arrayListProd.sort((a, b) => {
+                if (a.cost > b.cost) {return 1}
+                if (a.cost < b.cost) {return -1}
+                return 0;
+            });
+        }
+
+        return result;
     }

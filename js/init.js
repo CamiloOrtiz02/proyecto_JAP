@@ -39,3 +39,14 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  
+  document.getElementById('user').insertAdjacentHTML('afterbegin',
+  `
+  <a class="nav-link" href="">${sessionStorage.getItem('user')}</a>
+  <a class='nav-link fs-4 fas fa-sign-in-alt' href="login.html"></a>
+  `);
+
+
+});

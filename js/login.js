@@ -21,7 +21,7 @@ btnSubmit.addEventListener('click', (e) => {
     //! Return verification of Email
     let validMail = emailExp.test(email.value);
     //! Return verification of Password
-    let validPass = requirementsPassword(pass);
+    let validPass = verifyPassword(pass);
     
     //! Show message as appropriate case
     if (!validMail) {
@@ -44,12 +44,13 @@ btnSubmit.addEventListener('click', (e) => {
 
     if (validMail && validPass) {
         sessionStorage.setItem('isLogin', true);
+        sessionStorage.setItem('user', email.value);
         window.location.href = 'index.html';
     }
 });
 
 //! Validate if the password meets the requirements
-function requirementsPassword(pass) {
+function verifyPassword(pass) {
     let flag = true;
     let values = [
         pass.value.length > 7,
