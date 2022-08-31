@@ -59,35 +59,12 @@ document.addEventListener("DOMContentLoaded", () =>{
         document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
     }
 
-    document.getElementById('sortAsc').addEventListener('click', () =>{
-        if (!flagSort[0]) {
-            flagSort[0] = true;
-            document.getElementById('sortAsc').classList.remove('btn-outline-dark');
-            showProducts(sortProd('priceAsc'));
-        }else{
-            flagSort[0] = false;
-            document.getElementById('sortAsc').classList.add('btn-outline-dark');
-            document.getElementById('sortAsc').checked = false;
-            showProducts(copyOriginProd);
-        }
+    document.getElementById('sortAsc').addEventListener('click', (e) =>{
+        changeElementPrice(0, e.target.id, 'priceAsc');
     });
 
-    function changeElementSort(index, ) {
-        amount
-    }
-
-    document.getElementById('sortDesc').addEventListener('click', () =>{
-
-        if (!flagSort[1]) {
-            flagSort[1] = true;
-            document.getElementById('sortDesc').classList.remove('btn-outline-dark');
-            showProducts(sortProd('priceDesc'));
-        }else{
-            flagSort[1] = false;
-            document.getElementById('sortDesc').classList.add('btn-outline-dark');
-            document.getElementById('sortDesc').checked = false;
-            showProducts(copyOriginProd);
-        }
+    document.getElementById('sortDesc').addEventListener('click', (e) =>{
+        changeElementPrice(1, e.target.id, 'priceDesc');
     });
 
     document.getElementById('sortByCount').addEventListener('click', () =>{
@@ -150,4 +127,17 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
 
         return result;
+    }
+
+    function changeElementPrice(index, id, criteria) {
+        if (!flagSort[index]) {
+            flagSort[index] = true;
+            document.getElementById(id).classList.remove('btn-outline-dark');
+            showProducts(sortProd(criteria));
+        }else{
+            flagSort[index] = false;
+            document.getElementById(id).classList.add('btn-outline-dark');
+            document.getElementById(id).checked = false;
+            showProducts(copyOriginProd);
+        }
     }
