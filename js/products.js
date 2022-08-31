@@ -1,7 +1,7 @@
 //! CAR PRODUCTS URL
 const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
-let flagByRel = true;
 let data = '';
+let flagSort = [false, false, false, false];
 let arrayListProd = [];
 let copyOriginProd = [];
 
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             for (const elem of data.products) {
                 copyOriginProd.push(elem);
             }
-            console.log(copyOriginProd);
 
             //! SAVE ELEMENTS FOR REFERENCE FROM PRODUCTS[]
             arrayListProd = data.products;
@@ -60,48 +59,50 @@ document.addEventListener("DOMContentLoaded", () =>{
         document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
     }
 
-
-
-    /*
-     * sortAsc
-     * sortDesc
-     * sortByCount
-     * rangeFilterCountMin
-     * rangeFilterCountMax
-     */
-
     document.getElementById('sortAsc').addEventListener('click', () =>{
-        document.getElementById('labelSortDesc').classList.remove('btn-dark');
-        document.getElementById('labelSortByCount').classList.remove('btn-dark');
-        document.getElementById('labelSortAsc').classList.add('btn-dark');
-
-        showProducts(sortProd('priceAsc'));
+        if (!flagSort[0]) {
+            flagSort[0] = true;
+            document.getElementById('sortAsc').classList.remove('btn-outline-dark');
+            showProducts(sortProd('priceAsc'));
+        }else{
+            flagSort[0] = false;
+            document.getElementById('sortAsc').classList.add('btn-outline-dark');
+            document.getElementById('sortAsc').checked = false;
+            showProducts(copyOriginProd);
+        }
     });
 
-    document.getElementById('sortDesc').addEventListener('click', () =>{
-        document.getElementById('labelSortAsc').classList.remove('btn-dark');
-        document.getElementById('labelSortByCount').classList.remove('btn-dark');
-        document.getElementById('labelSortDesc').classList.add('btn-dark');
+    function changeElementSort(index, ) {
+        amount
+    }
 
-        showProducts(sortProd('priceDesc'));
+    document.getElementById('sortDesc').addEventListener('click', () =>{
+
+        if (!flagSort[1]) {
+            flagSort[1] = true;
+            document.getElementById('sortDesc').classList.remove('btn-outline-dark');
+            showProducts(sortProd('priceDesc'));
+        }else{
+            flagSort[1] = false;
+            document.getElementById('sortDesc').classList.add('btn-outline-dark');
+            document.getElementById('sortDesc').checked = false;
+            showProducts(copyOriginProd);
+        }
     });
 
     document.getElementById('sortByCount').addEventListener('click', () =>{
-        document.getElementById('labelSortDesc').classList.remove('btn-dark');
-        document.getElementById('labelSortAsc').classList.remove('btn-dark');
-        document.getElementById('labelSortByCount').classList.add('btn-dark');
-
-        if (flagByRel) {
-            document.getElementById('iconRel').classList.remove('fa-sort-amount-down');
-            document.getElementById('iconRel').classList.add('fa-sort-amount-up');
+        
+        if (!flagSort[2]) {
+            document.getElementById('iconRel').classList.remove('fa-sort-numeric-down');
+            document.getElementById('iconRel').classList.add('fa-sort-numeric-up');
             showProducts(sortProd('sortByCountAsc'));
-            flagByRel = false
+            flagSort[2] = true;
         }else{
             
-            document.getElementById('iconRel').classList.remove('fa-sort-amount-up');
-            document.getElementById('iconRel').classList.add('fa-sort-amount-down');
+            document.getElementById('iconRel').classList.remove('fa-sort-numeric-up');
+            document.getElementById('iconRel').classList.add('fa-sort-numeric-down');
             showProducts(sortProd('sortByCountDesc'));
-            flagByRel = true
+            flagSort[2] = false;
         }
     });
 
