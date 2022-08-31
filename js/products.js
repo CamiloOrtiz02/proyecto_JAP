@@ -8,7 +8,6 @@ let copyOriginProd = [];
 //! GET DATA FROM URL
 document.addEventListener("DOMContentLoaded", () =>{
     getJSONData(URL_PROD).then((RESOLVED) => {
-        if (RESOLVED.status === 'ok') {
             //! RESOLVED: STATUS, DATA {catID, catName, products[]}
             data = RESOLVED.data;
             changeDataHeader(data);
@@ -22,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             arrayListProd = data.products;
             
             showProducts(data.products);
-        }
     });
 });
 
