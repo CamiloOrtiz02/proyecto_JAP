@@ -43,8 +43,7 @@ btnSubmit.addEventListener('click', (e) => {
     }
 
     if (validMail && validPass) {
-        sessionStorage.setItem('isLogin', true);
-        sessionStorage.setItem('user', email.value);
+        sessionStorage.setItem('isLogin', email.value);
         window.location.href = 'index.html';
     }
 });

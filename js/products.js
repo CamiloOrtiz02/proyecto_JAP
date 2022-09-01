@@ -82,46 +82,72 @@ document.addEventListener("DOMContentLoaded", () =>{
     });
 
     document.getElementById('rangeFilterCount').addEventListener('click', () =>{
-        let inpNum = document.querySelectorAll('input[type="number"]');
-        
-        if(inpNum[0].value > inpNum[1].value){
-            console.log(inpNum);
-        }
+        sortProd('sortByFilterMinMax');
     });
 
+    document.getElementById('clearRangeFilter').addEventListener('click', () =>{
+        showProducts(sortProd('clean'));
+    });
+
+
     function sortProd(criteria) {
+        let inpNum = document.querySelectorAll('input[type="number"]');
         let result = [];
 
-        if (criteria === 'priceAsc') {
-            result = arrayListProd.sort((a, b) => {
-                if (a.cost < b.cost) {return 1}
-                if (a.cost > b.cost) {return -1}
-                return 0;
+        if (criteria == 'sortByFilterMinMax') {
+            arrayListProd = copyOriginProd.filter((elem) => {
+                return elem.cost >= inpNum[0].value && elem.cost <= inpNum[1].value
             });
+            showProducts(arrayListProd);
         }
 
-        if (criteria === 'priceDesc') {
-            result = arrayListProd.sort((a, b) => {
-                if (a.cost > b.cost) {return 1}
-                if (a.cost < b.cost) {return -1}
-                return 0;
-            });
-        }
+        switch (criteria) {
+            case 'priceAsc':
+                result = arrayListProd.sort((a, b) => {
+                    if (a.cost < b.cost) {return 1}
+                    if (a.cost > b.cost) {return -1}
+                    return 0;
+                });
+                break;
 
-        if (criteria === 'sortByCountAsc') {
-            result = arrayListProd.sort((a, b) => {
-                if (a.soldCount < b.soldCount) {return 1}
-                if (a.soldCount > b.soldCount) {return -1}
-                return 0;
-            });
-        }
+            case 'priceDesc':
+                result = arrayListProd.sort((a, b) => {
+                    if (a.cost > b.cost) {return 1}
+                    if (a.cost < b.cost) {return -1}
+                    return 0;
+                });
+                break;
 
-        if (criteria === 'sortByCountDesc') {
-            result = arrayListProd.sort((a, b) => {
-                if (a.soldCount > b.soldCount) {return 1}
-                if (a.soldCount < b.soldCount) {return -1}
-                return 0;
-            });
+            case 'sortByCountAsc':
+                result = arrayListProd.sort((a, b) => {
+                    if (a.soldCount < b.soldCount) {return 1}
+                    if (a.soldCount > b.soldCount) {return -1}
+                    return 0;
+                });
+                break;
+
+            case 'sortByCountDesc':
+                result = arrayListProd.sort((a, b) => {
+                    if (a.soldCount > b.soldCount) {return 1}
+                    if (a.soldCount < b.soldCount) {return -1}
+                    return 0;
+                });
+                break;
+
+            case 'clean':
+                document.getElementById('sortAsc').checked = false;
+                document.getElementById('sortDesc').checked = false;
+                document.getElementById('sortByCount').checked = false;
+                document.getElementById('rangeFilterCountMin').value = '';
+                document.getElementById('rangeFilterCountMax').value = '';
+                    
+                    arrayListProd = copyOriginProd;
+                    return arrayListProd;
+                break;
+
+            default:
+                result = copyOriginProd;
+                break;
         }
 
         return result;
@@ -136,6 +162,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             flagSort[index] = false;
             document.getElementById(id).classList.add('btn-outline-dark');
             document.getElementById(id).checked = false;
-            showProducts(copyOriginProd);
+            showProducts(arrayListProd);
         }
     }
