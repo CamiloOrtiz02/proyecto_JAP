@@ -45,8 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('user').insertAdjacentHTML('afterbegin',
   `
   <a class="nav-link" href="">${sessionStorage.getItem('isLogin')}</a>
-  <a class='nav-link fs-4 fas fa-sign-in-alt' href="login.html"></a>
+  <a class='nav-link fs-4 fas fa-sign-in-alt' href="login.html" id="user"></a>
   `);
+});
 
-
+document.getElementById('user', () => {
+  localStorage.setItem('isLogin', null);
+  window.location.href = 'index.html';
 });

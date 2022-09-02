@@ -1,7 +1,6 @@
 //! CAR PRODUCTS URL
 const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
 let data = '';
-let flagSort = [false, false, false, false];
 let arrayListProd = [];
 let copyOriginProd = [];
 
@@ -10,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     getJSONData(URL_PROD).then((RESOLVED) => {
             //! RESOLVED: STATUS, DATA {catID, catName, products[]}
             data = RESOLVED.data;
-            changeDataHeader(data);
+            document.getElementById('catNameHeader').textContent = data.catName;
+            document.getElementById('list-prod-').setAttribute('id', `list-prod-${data.catName}`);
             
             //! SAVE COPY FROM PRODUCTS[]
             for (const elem of data.products) {
@@ -19,16 +19,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 
             //! SAVE ELEMENTS FOR REFERENCE FROM PRODUCTS[]
             arrayListProd = data.products;
-            
             showProducts(data.products);
     });
 });
-
-    //! SHOW HEADER
-    function changeDataHeader() {
-        document.getElementById('catNameHeader').textContent = data.catName;
-        document.getElementById('list-prod-').setAttribute('id', `list-prod-${data.catName}`);
-    }
 
     //! SHOW DATA
     function showProducts (products){
@@ -58,26 +51,23 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     document.getElementById('sortAsc').addEventListener('click', (e) =>{
-        changeElementPrice(0, e.target.id, 'priceAsc');
+            showProducts(sortProd('priceAsc'));
     });
 
-    document.getElementById('sortDesc').addEventListener('click', (e) =>{
-        changeElementPrice(1, e.target.id, 'priceDesc');
+    document.getElementById('sortDesc').addEventListener('click', () =>{
+        showProducts(sortProd('priceDesc'));
     });
 
     document.getElementById('sortByCount').addEventListener('click', () =>{
-        
-        if (!flagSort[2]) {
-            document.getElementById('iconRel').classList.remove('fa-sort-numeric-down');
-            document.getElementById('iconRel').classList.add('fa-sort-numeric-up');
+        let rel = document.getElementById('iconRel');
+        if (!rel.classList.contains('fa-sort-numeric-up')) {
+            rel.classList.remove('fa-sort-numeric-down');
+            rel.classList.add('fa-sort-numeric-up');
             showProducts(sortProd('sortByCountAsc'));
-            flagSort[2] = true;
         }else{
-            
-            document.getElementById('iconRel').classList.remove('fa-sort-numeric-up');
-            document.getElementById('iconRel').classList.add('fa-sort-numeric-down');
+            rel.classList.remove('fa-sort-numeric-up');
+            rel.classList.add('fa-sort-numeric-down');
             showProducts(sortProd('sortByCountDesc'));
-            flagSort[2] = false;
         }
     });
 
@@ -140,28 +130,14 @@ document.addEventListener("DOMContentLoaded", () =>{
                 document.getElementById('sortByCount').checked = false;
                 document.getElementById('rangeFilterCountMin').value = '';
                 document.getElementById('rangeFilterCountMax').value = '';
-                    
-                    arrayListProd = copyOriginProd;
-                    return arrayListProd;
+                
+                arrayListProd = copyOriginProd;
+                return arrayListProd;
                 break;
 
             default:
                 result = copyOriginProd;
                 break;
         }
-
         return result;
-    }
-
-    function changeElementPrice(index, id, criteria) {
-        if (!flagSort[index]) {
-            flagSort[index] = true;
-            document.getElementById(id).classList.remove('btn-outline-dark');
-            showProducts(sortProd(criteria));
-        }else{
-            flagSort[index] = false;
-            document.getElementById(id).classList.add('btn-outline-dark');
-            document.getElementById(id).checked = false;
-            showProducts(arrayListProd);
-        }
     }
