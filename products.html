@@ -53,9 +53,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+    <div class="col-lg-12 col-md-12 mb-1 container">
       <div class="row container p-0 m-0">
-        <div class="col">
+        <div class="col-auto d-flex">
+          <label for="searchProduct" class="btn disabled" ><i class="fas fa-search"></i></label>
+          <input id="searchProduct" type="text" class="form-control" placeholder="Buscar...">
+        </div>
+        <div class="col offset-lg-2">
           <p class="font-weight-normal text-end my-2">Precio:</p>
         </div>
         <div class="col">
@@ -64,15 +68,16 @@
         <div class="col">
           <input class="form-control" type="number" placeholder="máx." min="0" id="rangeFilterCountMax">
         </div>
-        <div class="col-3 p-0">
+        <div class="col p-0">
           <div class="btn-group" role="group">
             <button class="btn btn-outline-primary btn-block" id="rangeFilterCount">Filtrar</button>
-            <button class="btn btn-outline-info btn-sm" id="clearRangeFilter">Limpiar</button>
+            <button class="btn btn-outline-primary btn-sm" id="clearRangeFilter">Limpiar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!--PRODUCTS LIST-->
   <div class="container">
       <div class="row">
           <div class="list-group" id="list-prod-">
