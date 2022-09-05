@@ -86,10 +86,12 @@ document.addEventListener("DOMContentLoaded", () =>{
         if (!rel.classList.contains('fa-sort-numeric-up')) {
             rel.classList.remove('fa-sort-numeric-down');
             rel.classList.add('fa-sort-numeric-up');
+
             sortAsc('rel');
         }else{
             rel.classList.remove('fa-sort-numeric-up');
             rel.classList.add('fa-sort-numeric-down');
+            
             sortDesc('rel');
         }
     });

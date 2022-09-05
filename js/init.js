@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   document.getElementById('user').insertAdjacentHTML('afterbegin',
   `
-  <a class="nav-link" href="">${sessionStorage.getItem('isLogin')}</a>
+  <a class="nav-link" href="">${localStorage.getItem('isLogin')}</a>
   <a class='nav-link fs-4 fas fa-sign-in-alt' href="login.html" id="user"></a>
   `);
 });

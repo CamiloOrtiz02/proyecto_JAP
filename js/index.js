@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(e){
     
-    if (sessionStorage.getItem('isLogin') == null) {
+    if (localStorage.getItem('isLogin') == null) {
     document.body.classList.add('invisible');
         window.location.href = 'login.html';
     }
