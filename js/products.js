@@ -1,5 +1,5 @@
 // CAR PRODUCTS URL
-const URL_PROD = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem('catID')}.json`;
+const URL_PROD = PRODUCTS_URL+localStorage.getItem('catID')+EXT_TYPE;
 let data = '';
 let arrayListProd = [];
 let copyOriginProd = [];
