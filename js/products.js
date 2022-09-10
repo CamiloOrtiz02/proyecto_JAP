@@ -25,13 +25,16 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     // SHOW DATA
     function showProducts (products){
-        let prod = '';
-
         // SAVE DATA OF PRODUCTS
         if (products.length > 0) {     
+            document.getElementById(`list-prod-${data.catName}`).innerHTML = "";
             for (const elem of products) {
-                prod += `
-                <div onclick="setCatID(${data.catID})" class="list-group-item list-group-item-action cursor-active">
+                let prod = '';
+                let divList = document.createElement('div');
+                divList.classList.add('list-group-item', 'list-group-item-action', 'cursor-active');
+                divList.setAttribute('id', elem.id);
+
+                prod =`
                 <div class="row">
                     <div class="col-3">
                         <img src="${elem.image}" alt="${elem.description}" class="img-thumbnail">
@@ -44,11 +47,15 @@ document.addEventListener("DOMContentLoaded", () =>{
                         <p class="mb-1">${elem.description}</p>
                     </div>
                 </div>
-            </div>
                 `;
+                divList.innerHTML = prod;
+                document.getElementById(`list-prod-${data.catName}`).appendChild(divList);
+                divList.addEventListener('click', () => {
+                    localStorage.setItem('prodID', divList.id);
+                    window.location = "product-info.html";
+                });
             }
             // INSERT DATA AS ROWS
-            document.getElementById(`list-prod-${data.catName}`).innerHTML = prod;
         }else{
             showWithoutProducts();
         }
