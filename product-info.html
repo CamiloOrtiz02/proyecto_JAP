@@ -37,11 +37,11 @@
   </nav>
   <main>
     <div class="container mt-5">
-      <div class="row">
+      <div class="row border">
         <div id="smallImgs" class="col-2"></div>
         <div id="largeImg" class="col-7 mt-3"></div>
         <div id="descProd" class="col-3">
-          <div class="border-bottom mb-4 w-75">
+          <div class="border-bottom mb-4">
             <h2 id="prodName"></h2>
           </div>
           <div class="border-bottom mb-3">
@@ -62,12 +62,16 @@
           </div>
         </div><!--DESCPROD-->
       </div> <!--ROW-->
-      <div id="prodRelated" class="row">
-        PRODUCTOS RELACIONADOS
+      <div class="row mt-5 border">
+        <h2 class="text-decoration-underline">Productos Relacionados</h2>
+        <div id="prodList" class="list-group list-group-horizontal text-center"></div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col">
-          COMENTARIOS
+          <div id="prodComments" class="list-group"></div>
+        </div>
+        <div class="col border">
+          FORMULARIO
         </div>
       </div>
     </div> <!--CONTAINER-->
