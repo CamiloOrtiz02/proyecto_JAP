@@ -49,7 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
   `);
 });
 
-document.getElementById('user', () => {
-  localStorage.setItem('isLogin', null);
-  window.location.href = 'index.html';
+document.getElementById('user').addEventListener('click', () => {
+  localStorage.removeItem('isLogin');
+  window.location.href = "index.html";
+
 });
