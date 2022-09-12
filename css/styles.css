@@ -194,3 +194,7 @@ a.custom-card:hover {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.mw-100{
+  min-width: 250px !important; 
+}
