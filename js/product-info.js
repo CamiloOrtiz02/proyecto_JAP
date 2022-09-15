@@ -1,7 +1,8 @@
+let comments = [];
+
 document.addEventListener("DOMContentLoaded", () => {
     getJSONData(PRODUCT_INFO_URL+localStorage.getItem('prodID')+EXT_TYPE).then(RESOLVED => {
         const imageDefault = document.createElement('img');
-        console.log(RESOLVED);
         document.getElementById('prodName').textContent = RESOLVED.data.name;
         document.getElementById('prodCost').textContent = `${RESOLVED.data.currency} ${RESOLVED.data.cost}`;
         document.getElementById('prodDescription').textContent = RESOLVED.data.description;
@@ -18,10 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL+localStorage.getItem('prodID')+EXT_TYPE).then(RESOLVED => {
         console.log(RESOLVED);
-        showProdComments(RESOLVED.data);
+        if (RESOLVED.data.length > 0) {
+            localStorage.setItem('comments', JSON.stringify(RESOLVED.data));
+            showProdComments(JSON.parse(localStorage.getItem('comments')));
+        }else{
+            document.getElementById('prodComments').innerHTML = 
+            `
+                <div class="border p-3 text-center">NO EXISTEN COMENTARIOS</div>
+            `;
+        }
     });
 });
-
 
 function showImages(images){
     for (const elem of images) {
@@ -47,7 +55,6 @@ function showProdsRelated(related){
             <p class="h4">${elem.name}</p>
         `
         document.getElementById('prodList').appendChild(prodRel);
-
         prodRel.addEventListener('click', () =>{
             localStorage.setItem('prodID', elem.id);
             window.location.reload();
@@ -81,3 +88,4 @@ function showScore(num){
     }
     return stars;
 }
+

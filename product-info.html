@@ -38,9 +38,9 @@
   <main>
     <div class="container mt-5">
       <div class="row border">
-        <div id="smallImgs" class="col-2"></div>
+        <div id="smallImgs" class="col-1 mt-3"></div>
         <div id="largeImg" class="col-7 mt-3"></div>
-        <div id="descProd" class="col-3 mw-100">
+        <div id="descProd" class="col-3 mw-100 mt-3">
           <div class="border-bottom mb-4">
             <h2 id="prodName" class="text-primary text-decoration-underline fw-bold"></h2>
           </div>
@@ -71,8 +71,18 @@
           <div id="prodComments" class="list-group"></div>
         </div>
         <div class="col">
-          <div class="border">
-            FORMULARIO
+          <div class="border p-4 text-center">
+            <h4 class="text-secondary fw-bold">Calificar</h4>
+            <div id="commentStars" class="mb-3">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <div id="stars"></div>
+            <textarea name="comments" id="addComments" cols="60" rows="5"></textarea>
+            <button id="submitComment" class="btn btn-primary mt-2">Comentar</button>
           </div>
         </div>
       </div>
