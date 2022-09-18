@@ -52,5 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById('user').addEventListener('click', () => {
   localStorage.removeItem('isLogin');
   window.location.href = "index.html";
-
 });

@@ -68,17 +68,34 @@
       </div>
       <div class="row mt-5">
         <div class="col">
-          <div id="prodComments" class="list-group"></div>
+          <div id="prodComments" class="list-group">
+            <h4 class="p-2 border mb-0 fw-bold text-secondary text-center">Comentarios</h4>
+          </div>
         </div>
         <div class="col">
-          <div class="border p-4 text-center">
+          <div class="border p-3 text-center">
             <h4 class="text-secondary fw-bold">Calificar</h4>
             <div id="commentStars" class="mb-3">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
+              <input class="btn-check" type="radio" name="stars" id="1">
+              <label for="1" class="form-check-label fs-3 p-2">
+                <i class="fa fa-star checked"></i>
+              </label>
+              <input class="btn-check" type="radio" name="stars" id="2">
+              <label for="2" class="form-check-label fs-3 p-2">
+                <i class="fa fa-star"></i>
+              </label>
+              <input class="btn-check" type="radio" name="stars" id="3">
+              <label for="3" class="form-check-label fs-3 p-2">
+                <i class="fa fa-star"></i>
+              </label>
+              <input class="btn-check" type="radio" name="stars" id="4">
+              <label for="4" class="form-check-label fs-3 p-2">
+                <i class="fa fa-star"></i>
+              </label>
+              <input class="btn-check" type="radio" name="stars" id="5">
+              <label for="5" class="form-check-label fs-3 p-2">
+                <i class="fa fa-star"></i>
+              </label>
             </div>
             <div id="stars"></div>
             <textarea name="comments" id="addComments" cols="60" rows="5"></textarea>

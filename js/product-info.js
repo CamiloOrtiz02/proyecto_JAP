@@ -1,7 +1,9 @@
+const URL_PROD_INFO = PRODUCT_INFO_URL+localStorage.getItem('prodID')+EXT_TYPE;
+let stars = document.querySelectorAll('#commentStars input');
 let comments = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    getJSONData(PRODUCT_INFO_URL+localStorage.getItem('prodID')+EXT_TYPE).then(RESOLVED => {
+    getJSONData(URL_PROD_INFO).then(RESOLVED => {
         const imageDefault = document.createElement('img');
         document.getElementById('prodName').textContent = RESOLVED.data.name;
         document.getElementById('prodCost').textContent = `${RESOLVED.data.currency} ${RESOLVED.data.cost}`;
@@ -88,4 +90,3 @@ function showScore(num){
     }
     return stars;
 }
-
