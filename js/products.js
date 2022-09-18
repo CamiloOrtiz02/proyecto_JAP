@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
     }
 
-    //! EN CASO DE NO HABER PRODUCTOS
+    // EN CASO DE NO HABER PRODUCTOS
     function showWithoutProducts() {
         document.getElementById(`list-prod-${data.catName}`).innerHTML = `
             <div class="row">
@@ -75,21 +75,21 @@ document.addEventListener("DOMContentLoaded", () =>{
         
     }
 
-    //! SORT BY PRICE ASC
+    // SORT BY PRICE ASC
     document.getElementById('sortAsc').addEventListener('click', () =>{
         sortAsc('price');
     });
 
-    //! SORT BY PRICE DESC
+    // SORT BY PRICE DESC
     document.getElementById('sortDesc').addEventListener('click', () =>{
         sortDesc('price');
     });
 
     
-    //! SORT BY REL.
+    // SORT BY REL.
     document.getElementById('sortByCount').addEventListener('click', () =>{
         let rel = document.getElementById('iconRel');
-        //! SORT BY ASC ELSE DESC
+        // SORT BY ASC ELSE DESC
         if (!rel.classList.contains('fa-sort-numeric-up')) {
             rel.classList.remove('fa-sort-numeric-down');
             rel.classList.add('fa-sort-numeric-up');
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         showProducts(arrayListProd);
     });
 
-    //! SORT BY PRICE RANGE
+    // SORT BY PRICE RANGE
     document.getElementById('rangeFilterCount').addEventListener('click', () =>{
         const inpNum = document.querySelectorAll('input[type="number"]');
         arrayListProd = copyOriginProd.filter((elem) => {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         showProducts(arrayListProd);
     });
 
-    //! CLEAR FILTERS
+    // CLEAR FILTERS
     document.getElementById('clearRangeFilter').addEventListener('click', () =>{
         document.getElementById('sortAsc').checked = false;
         document.getElementById('sortDesc').checked = false;
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         showProducts(arrayListProd);
     });
 
-    //! ORDER BY ASC
+    // ORDER BY ASC
     function sortAsc(property) {
         if (property == 'price') {
             arrayListProd.sort((a, b) => {
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         showProducts(arrayListProd);
     }
 
-    //! ORDER BY DESC
+    // ORDER BY DESC
     function sortDesc(property) {
         if (property == 'price') {
             arrayListProd.sort((a, b) => {
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         showProducts(arrayListProd);
     }
 
-    //! COPY ArrayListProd OF CopyOriginProd
+    // COPY ArrayListProd OF CopyOriginProd
     function updateListProdOriginal() {
         for (let i = 0; i < copyOriginProd.length; i++) {
             arrayListProd[i] = copyOriginProd[i];

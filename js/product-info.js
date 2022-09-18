@@ -1,39 +1,41 @@
 const URL_PROD_INFO = PRODUCT_INFO_URL+localStorage.getItem('prodID')+EXT_TYPE;
-let stars = document.querySelectorAll('#commentStars input');
-let comments = [];
+const URL_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL+localStorage.getItem('prodID')+EXT_TYPE;
+let stars = document.querySelectorAll('#commentStars label');
 
 document.addEventListener("DOMContentLoaded", () => {
+    //! API OF PRODUCT INFO
     getJSONData(URL_PROD_INFO).then(RESOLVED => {
-        const imageDefault = document.createElement('img');
         document.getElementById('prodName').textContent = RESOLVED.data.name;
         document.getElementById('prodCost').textContent = `${RESOLVED.data.currency} ${RESOLVED.data.cost}`;
         document.getElementById('prodDescription').textContent = RESOLVED.data.description;
         document.getElementById('prodCategory').textContent = RESOLVED.data.category;
         document.getElementById('prodSoldCount').textContent = RESOLVED.data.soldCount;
         
+        const imageDefault = document.createElement('img');
+        
         imageDefault.classList.add('img-thumbnail', 'shadow-sm');
         imageDefault.setAttribute('src', RESOLVED.data.images[0]);
         document.getElementById('largeImg').appendChild(imageDefault);
 
-        showImages(RESOLVED.data.images);
+        showSmallImages(RESOLVED.data.images);
         showProdsRelated(RESOLVED.data.relatedProducts);
     });
 
-    getJSONData(PRODUCT_INFO_COMMENTS_URL+localStorage.getItem('prodID')+EXT_TYPE).then(RESOLVED => {
-        console.log(RESOLVED);
+    //! API OF COMMENTS
+    getJSONData(URL_PROD_COMMENTS).then(RESOLVED => {
         if (RESOLVED.data.length > 0) {
-            localStorage.setItem('comments', JSON.stringify(RESOLVED.data));
-            showProdComments(JSON.parse(localStorage.getItem('comments')));
+            showProdComments(RESOLVED.data);
         }else{
             document.getElementById('prodComments').innerHTML = 
             `
-                <div class="border p-3 text-center">NO EXISTEN COMENTARIOS</div>
+                <div class="border p-3 text-center">NO HAY COMENTARIOS</div>
             `;
         }
     });
 });
 
-function showImages(images){
+//! SHOW SMALL IMAGES
+function showSmallImages(images){
     for (const elem of images) {
         let imgs = document.createElement('img');
         imgs.setAttribute('src', elem);
@@ -48,6 +50,7 @@ function showImages(images){
     }
 }
 
+//! NO EXPLICAR
 function showProdsRelated(related){
     for (const elem of related) {
         let prodRel = document.createElement('div');
@@ -64,6 +67,7 @@ function showProdsRelated(related){
     }
 }
 
+//! SHOW PRODUCTS COMMENTS
 function showProdComments(comments) {
     for (const elem of comments) {
         let prodCom = document.createElement('div');
@@ -79,6 +83,7 @@ function showProdComments(comments) {
     }
 }
 
+//! SHOW SCORE IN COMMENTS
 function showScore(num){
     let stars = '';
     for (let i = 0; i < 5; i++) {
@@ -90,3 +95,55 @@ function showScore(num){
     }
     return stars;
 }
+
+//! EVENTS OF STAR
+for (const elem of stars) {
+    elem.addEventListener('click', () => starComments(elem));
+    elem.addEventListener('mouseover', () => starComments(elem));
+}
+
+document.getElementById('commentStars').addEventListener('mouseout', () => {
+    starComments(stars[getScore()]);
+});
+
+//! PAINT STARS
+function starComments(score){
+    for (let i = 0; i < 5; i++) {
+        if (i < score.control.id) {
+            stars[i].classList.add('checked');
+        }else{
+            stars[i].classList.remove('checked');
+        }
+    }
+}
+
+//! GET SCORE
+function getScore () {
+    let index = 0;
+    for (let i = 0; i < 5; i++) {
+        if (stars[i].control.checked) {
+            index = i;
+        }
+    }
+    return index;
+}
+
+
+//! BTN SUBMIT COMMENT
+document.getElementById('submitComment').addEventListener('click', () => {
+    let date = new Date();
+    date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let arr = [{
+        user : localStorage.getItem('isLogin'),
+        dateTime : date,
+        score : getScore()+1,
+        description : document.getElementById('addComments').value
+    }];
+
+    showProdComments(arr);
+
+    //! EMPTY FORM ELEMENTS
+    document.getElementById('addComments').value = '';
+    starComments(stars[0]);
+    stars[0].control.checked = true;
+});

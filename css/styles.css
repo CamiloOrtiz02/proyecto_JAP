@@ -199,7 +199,6 @@ a.custom-card:hover {
   min-width: 250px !important; 
 }
 
-textarea{
-  resize: none;
-  overflow-y: scroll;
+#prodComments{
+  max-height: 323px;
 }
