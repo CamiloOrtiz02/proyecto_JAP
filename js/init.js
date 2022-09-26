@@ -44,12 +44,22 @@ document.addEventListener("DOMContentLoaded", () => {
   
   document.getElementById('user').insertAdjacentHTML('afterbegin',
   `
-  <a class="nav-link" href="">${localStorage.getItem('isLogin')}</a>
-  <a class='nav-link fs-4 fas fa-sign-in-alt' href="login.html" id="user"></a>
+  <div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+    ${localStorage.getItem('isLogin')}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-dark w-100" aria-labelledby="dropdownMenuButton2">
+    <li><a class="dropdown-item" href="cart.html">Mi Carrito <i class="fas fa-shopping-cart float-end pt-1"></i></a></li>
+    <li><a class="dropdown-item" href="my-profile.html">Mi Perfil <i class="fas fa-user-circle float-end pt-1"></i></a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li id="logOut"><a class="dropdown-item" href="#">Cerrar Sesion <i class="fas fa-sign-out-alt float-end pt-1"></i></a></li>
+  </ul>
+</div>
   `);
+
+  document.getElementById('logOut').addEventListener('click', () => {
+    localStorage.removeItem('isLogin');
+    window.location = "login.html";
+  });
 });
 
-document.getElementById('user').addEventListener('click', () => {
-  localStorage.removeItem('isLogin');
-  window.location.href = "index.html";
-});
