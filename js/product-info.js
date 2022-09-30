@@ -3,7 +3,7 @@ const URL_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL+localStorage.getItem('prodID
 let stars = document.querySelectorAll('#commentStars label');
 
 document.addEventListener("DOMContentLoaded", () => {
-    //! API OF PRODUCT INFO
+    // API OF PRODUCT INFO
     getJSONData(URL_PROD_INFO).then(RESOLVED => {
         document.getElementById('prodName').textContent = RESOLVED.data.name;
         document.getElementById('prodCost').textContent = `${RESOLVED.data.currency} ${RESOLVED.data.cost}`;
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showProdsRelated(RESOLVED.data.relatedProducts);
     });
 
-    //! API OF COMMENTS
+    // API OF COMMENTS
     getJSONData(URL_PROD_COMMENTS).then(RESOLVED => {
         if (RESOLVED.data.length > 0) {
             showProdComments(RESOLVED.data);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-//! SHOW SMALL IMAGES
+// SHOW SMALL IMAGES
 function showSmallImages(images){
     for (const elem of images) {
         let imgs = document.createElement('img');
@@ -50,7 +50,7 @@ function showSmallImages(images){
     }
 }
 
-//! NO EXPLICAR
+//! SHOW RELATED PRODUCTS
 function showProdsRelated(related){
     for (const elem of related) {
         let prodRel = document.createElement('div');
@@ -67,7 +67,7 @@ function showProdsRelated(related){
     }
 }
 
-//! SHOW PRODUCTS COMMENTS
+// SHOW PRODUCTS COMMENTS
 function showProdComments(comments) {
     for (const elem of comments) {
         let prodCom = document.createElement('div');
@@ -83,7 +83,7 @@ function showProdComments(comments) {
     }
 }
 
-//! SHOW SCORE IN COMMENTS
+// SHOW SCORE IN COMMENTS
 function showScore(num){
     let stars = '';
     for (let i = 0; i < 5; i++) {
@@ -96,7 +96,7 @@ function showScore(num){
     return stars;
 }
 
-//! EVENTS OF STAR
+// EVENTS OF STAR
 for (const elem of stars) {
     elem.addEventListener('click', () => starComments(elem));
     elem.addEventListener('mouseover', () => starComments(elem));
@@ -106,7 +106,7 @@ document.getElementById('commentStars').addEventListener('mouseout', () => {
     starComments(stars[getScore()]);
 });
 
-//! PAINT STARS
+// PAINT STARS
 function starComments(score){
     for (let i = 0; i < 5; i++) {
         if (i < score.control.id) {
@@ -117,7 +117,7 @@ function starComments(score){
     }
 }
 
-//! GET SCORE
+// GET SCORE
 function getScore () {
     let index = 0;
     for (let i = 0; i < 5; i++) {
@@ -129,7 +129,7 @@ function getScore () {
 }
 
 
-//! BTN SUBMIT COMMENT
+// BTN SUBMIT COMMENT
 document.getElementById('submitComment').addEventListener('click', () => {
     let date = new Date();
     date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -142,7 +142,7 @@ document.getElementById('submitComment').addEventListener('click', () => {
 
     showProdComments(arr);
 
-    //! EMPTY FORM ELEMENTS
+    // EMPTY FORM ELEMENTS
     document.getElementById('addComments').value = '';
     starComments(stars[0]);
     stars[0].control.checked = true;
