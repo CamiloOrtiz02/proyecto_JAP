@@ -202,3 +202,7 @@ a.custom-card:hover {
 #prodComments{
   max-height: 323px;
 }
+
+.imgCart{
+  width: 150px;
+}
