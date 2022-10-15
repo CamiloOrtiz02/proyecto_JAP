@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
             inpNum.type = "number";
             inpNum.min = "1";
             inpNum.value = "1";
-            inpNum.classList.add('w-25');
+            inpNum.classList.add('form-control', 'w-input');
             element.innerHTML = 
             `
                 <th scope="row"><img class="imgCart" src="${elem.image}"></th>
                 <td>${elem.name}</td>
                 <td>${elem.currency} ${elem.unitCost}</td>
-                <td id="inpCant"></td>
+                <td id="inpCant-${elem.id}"></td>
                 <td class="text-decoration-underline text-success fw-bolder">${elem.currency} <span id="subTotal-${elem.id}" class="fs-4">${elem.unitCost}</span></td>
             `
             document.getElementById('articles').appendChild(element);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                     inpNum.classList.add('border-danger');
                 }
             })
-            document.getElementById('inpCant').appendChild(inpNum);
+            document.getElementById(`inpCant-${elem.id}`).appendChild(inpNum);
         }
     }else{
         document.getElementById('articles').innerHTML = 

@@ -1,24 +1,28 @@
 const URL_PROD_INFO = PRODUCT_INFO_URL+localStorage.getItem('prodID')+EXT_TYPE;
 const URL_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL+localStorage.getItem('prodID')+EXT_TYPE;
 let stars = document.querySelectorAll('#commentStars label');
+let pInfo = ''; 
+let cart = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     // API OF PRODUCT INFO
     getJSONData(URL_PROD_INFO).then(RESOLVED => {
-        document.getElementById('prodName').textContent = RESOLVED.data.name;
-        document.getElementById('prodCost').textContent = `${RESOLVED.data.currency} ${RESOLVED.data.cost}`;
-        document.getElementById('prodDescription').textContent = RESOLVED.data.description;
-        document.getElementById('prodCategory').textContent = RESOLVED.data.category;
-        document.getElementById('prodSoldCount').textContent = RESOLVED.data.soldCount;
+        pInfo = RESOLVED.data;
+        document.getElementById('prodName').textContent = pInfo.name;
+        document.getElementById('prodCost').textContent = `${pInfo.currency} ${pInfo.cost}`;
+        document.getElementById('prodDescription').textContent = pInfo.description;
+        document.getElementById('prodCategory').textContent = pInfo.category;
+        document.getElementById('prodSoldCount').textContent = pInfo.soldCount;
         
         const imageDefault = document.createElement('img');
         
         imageDefault.classList.add('img-thumbnail', 'shadow-sm');
-        imageDefault.setAttribute('src', RESOLVED.data.images[0]);
+        imageDefault.setAttribute('src', pInfo.images[0]);
         document.getElementById('largeImg').appendChild(imageDefault);
 
-        showSmallImages(RESOLVED.data.images);
-        showProdsRelated(RESOLVED.data.relatedProducts);
+        showSmallImages(pInfo.images);
+        showProdsRelated(pInfo.relatedProducts);
+        prodExists();
     });
 
     // API OF COMMENTS
@@ -32,6 +36,44 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }
     });
+});
+
+function prodExists() {
+    cart = JSON.parse(localStorage.getItem('arrArticles'));
+    let flag = cart.find((elem) => {return elem.id == pInfo.id});
+    if (flag != undefined) {
+        document.getElementById('delCart').classList.remove('visually-hidden');
+    }else{
+        document.getElementById('addCart').classList.remove('visually-hidden');
+    }
+}
+
+document.getElementById('addCart').addEventListener('click', () => {
+    let addProd = {
+            id: pInfo.id,
+            name: pInfo.name,
+            count: 1,
+            unitCost: pInfo.cost,
+            currency: pInfo.currency,
+            image: pInfo.images[0]
+        }
+    cart.push(addProd);
+    localStorage.setItem('arrArticles', JSON.stringify(cart));
+    document.getElementById('addCart').classList.add('visually-hidden');
+    document.getElementById('delCart').classList.remove('visually-hidden');
+    window.location.href = 'cart.html';
+});
+
+document.getElementById('delCart').addEventListener('click', () => {
+    let i=0
+    while (i < cart.length && cart[i].name != pInfo.name) 
+        i++;
+    if (i < cart.length) {
+        cart.splice(i,1);
+        localStorage.setItem("arrArticles",JSON.stringify(cart));
+        document.getElementById('delCart').classList.add("visually-hidden");
+        document.getElementById('addCart').classList.remove("visually-hidden");
+    }
 });
 
 // SHOW SMALL IMAGES
@@ -50,7 +92,7 @@ function showSmallImages(images){
     }
 }
 
-//! SHOW RELATED PRODUCTS
+// SHOW RELATED PRODUCTS
 function showProdsRelated(related){
     for (const elem of related) {
         let prodRel = document.createElement('div');
