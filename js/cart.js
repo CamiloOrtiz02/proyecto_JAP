@@ -4,25 +4,31 @@ document.addEventListener("DOMContentLoaded", ()=>{
     if (articles != null) {
         for (const elem of articles) {
             const element = document.createElement('tr');
-            element.classList.add('align-middle');
+            element.classList.add('align-middle', 'p-4');
 
             const inpNum = document.createElement('input');
-            inpNum.type = "number";
-            inpNum.min = "0";
-            inpNum.value = "1";
 
+            inpNum.type = "number";
+            inpNum.min = "1";
+            inpNum.value = "1";
+            inpNum.classList.add('w-25');
             element.innerHTML = 
             `
                 <th scope="row"><img class="imgCart" src="${elem.image}"></th>
                 <td>${elem.name}</td>
                 <td>${elem.currency} ${elem.unitCost}</td>
                 <td id="inpCant"></td>
-                <td>${elem.currency} <span id="subTotal-${elem.id}">${elem.unitCost}</span></td>
+                <td class="text-decoration-underline text-success fw-bolder">${elem.currency} <span id="subTotal-${elem.id}" class="fs-4">${elem.unitCost}</span></td>
             `
             document.getElementById('articles').appendChild(element);
 
             inpNum.addEventListener("input", (e) => {
-                document.getElementById(`subTotal-${elem.id}`).innerHTML = elem.unitCost * e.target.value; 
+                if (inpNum.value != 0) {
+                    inpNum.classList.remove('border-danger');
+                    document.getElementById(`subTotal-${elem.id}`).innerHTML = elem.unitCost * e.target.value; 
+                }else{
+                    inpNum.classList.add('border-danger');
+                }
             })
             document.getElementById('inpCant').appendChild(inpNum);
         }
