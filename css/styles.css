@@ -210,3 +210,15 @@ a.custom-card:hover {
 .w-input{
   width: 100px;
 }
+
+#shop{
+  max-height: 480px;
+}
+
+#smallImgs{
+  min-width: 100px;
+}
+
+#largeImg{
+  min-width: 395px;
+}

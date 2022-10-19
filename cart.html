@@ -39,7 +39,6 @@
       <div class="row mt-4 text-center">
         <h2 class="text-decoration-underline fw-bolder">Carrito de Compras</h2>
       </div>
-      
       <div class="row">
         <div class="col">
           <div>
@@ -59,14 +58,39 @@
                   </tr>
                 </thead>
                 <tbody id="articles">
-                  
                 </tbody>
               </table>
             </div>
           </div><!--Articles-->
         </div> <!--Col-->
-        <div id="shop" class="col-3 mt-5 p-4 bg-light border rounded-3">
-          <div id="shippingType">
+        <div id="shop" class="col-4 mt-5 mb-4 p-4 bg-light border rounded-3">
+          <div class="mt-2">
+            <p class="h4">Costos</p>
+            <hr class="mt-2">
+          </div>
+          <div>
+            <div class="p-3">
+              <p class="fw-bold">SUBTOTAL</p>
+              <p>Costo unitario del articulo<span id="totalUnit" class="float-end">Valor Unit</span></p>
+              <hr class="mt-2 mb-2">
+            </div>
+            <div class="p-3">
+              <p class="fw-bold">COSTO DE ENVIO</p>
+              <p>Costo de envio seleccionado <span id="shippingCost" class="float-end">Costo envio</span></p>
+              <hr class="mt-2 mb-2">
+            </div>
+            <div class="p-3">
+              <p class="fw-bold">TOTAL <span id="total" class="float-end fw-normal">Total</span></p>
+              <hr class="mt-2 mb-2">
+            </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn btn-success w-100">Comprar</button>
+          </div>
+        </div><!--Shop-->
+      </div>
+        <div class="row mt-3 w-75">
+          <div id="shippingType" class="col-5">
             <p class="h4">Tipo de Envio</p>
             <hr class="mt-2 mb-4">
               <div class="form-check">
@@ -82,29 +106,23 @@
                 <label for="standard" class="form-label">Standard de 12 a 15 dias (5%)</label>
               </div>
           </div><!--Shipping-->
-          <div id="shippingAddress" class="mt-2">
+          <div id="shippingAddress" class="col-6">
             <p class="h4">Direccion de Envio</p>
             <hr class="mt-2 mb-4">
-            <div class="d-block">
+            <div class="d-flex">
               <div class="mb-2">
-                <label class="form-label">Direccion</label>
-                <input type="text" name="address" class="form-control">
+                  <label class="form-label">Direccion</label>
+                  <input type="text" name="address" class="form-control me-5">
+                  <label class="form-label">Numero</label>
+                  <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
               </div>
-              <div class="mb-2">
-                <label class="form-label">Numero</label>
-                <input type="number" name="number" min="1" value="1" class="form-control w-25">
+              <div class="mb-2 ms-2">
+                <label class="form-label ">Esquina</label>
+                <input type="text" name="corner" class="form-control">
               </div>
-            <div class="mb-2">
-              <label class="form-label ">Esquina</label>
-              <input type="text" name="corner" class="form-control">
-            </div>
             </div>
           </div><!--Address-->
-          <div class="d-flex justify-content-center align-items-center mt-3">
-            <button class="btn btn-success w-100">Comprar</button>
-          </div>
-        </div><!--Shop-->
-      </div><!--Row-->
+        </div><!--shippingType-->
     </div>
   </main>
   <footer class="text-muted">
