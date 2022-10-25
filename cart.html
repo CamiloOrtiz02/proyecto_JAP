@@ -55,6 +55,7 @@
                     <th scope="col">Costo</th>
                     <th scope="col">Cant.</th>
                     <th scope="col">SubTotal</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody id="articles">
@@ -62,6 +63,40 @@
               </table>
             </div>
           </div><!--Articles-->
+          <div class="row m-1 mt-3 p-3 bg-light">
+            <div id="shippingType" class="col-5">
+              <p class="h4">Tipo de Envio</p>
+              <hr class="mt-2 mb-4">
+                <div class="form-check">
+                  <input type="radio" name="send" id="premium" class="form-check-input">
+                  <label for="premium" class="form-label">Premium de 2 a 5 dias (15%)</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" name="send" id="express" class="form-check-input">
+                  <label for="express" class="form-label">Express de 5 a 8 dias (7%)</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" name="send" id="standard" class="form-check-input" checked>
+                  <label for="standard" class="form-label">Standard de 12 a 15 dias (5%)</label>
+                </div>
+            </div><!--Shipping-->
+            <div id="shippingAddress" class="col-6">
+              <p class="h4">Direccion de Envio</p>
+              <hr class="mt-2 mb-4">
+              <div class="d-flex">
+                <div class="mb-2">
+                    <label class="form-label">Calle</label>
+                    <input type="text" name="address" class="form-control me-5">
+                    <label class="form-label">Numero</label>
+                    <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
+                </div>
+                <div class="mb-2 ms-2">
+                  <label class="form-label ">Esquina</label>
+                  <input type="text" name="corner" class="form-control">
+                </div>
+              </div>
+            </div><!--Address-->
+          </div><!--shippingType-->
         </div> <!--Col-->
         <div id="shop" class="col-4 mt-5 mb-4 p-4 bg-light border rounded-3">
           <div class="mt-2">
@@ -70,60 +105,71 @@
           </div>
           <div>
             <div class="p-3">
-              <p class="fw-bold">SUBTOTAL</p>
-              <p>Costo unitario del articulo<span id="totalUnit" class="float-end">Valor Unit</span></p>
+              <p class="fw-bold">SUBTOTAL<span class="float-end">U$S <span id="totalUnit"></span></span></p>
+              <p>Costo total de los articulos</p>
               <hr class="mt-2 mb-2">
             </div>
             <div class="p-3">
-              <p class="fw-bold">COSTO DE ENVIO</p>
-              <p>Costo de envio seleccionado <span id="shippingCost" class="float-end">Costo envio</span></p>
+              <p class="fw-bold">COSTO DE ENVIO<span class="float-end">U$S <span id="shippingCost"></span></span></p>
+              <p>Costo de envio seleccionado</p>
               <hr class="mt-2 mb-2">
             </div>
             <div class="p-3">
-              <p class="fw-bold">TOTAL <span id="total" class="float-end fw-normal">Total</span></p>
+              <p class="fw-bold">TOTAL <span class="float-end text-success">U$S <span id="total"></span></span></p>
               <hr class="mt-2 mb-2">
             </div>
           </div>
           <div class="mt-2">
-            <button class="btn btn-success w-100">Comprar</button>
-          </div>
-        </div><!--Shop-->
-      </div>
-        <div class="row mt-3 w-75">
-          <div id="shippingType" class="col-5">
-            <p class="h4">Tipo de Envio</p>
-            <hr class="mt-2 mb-4">
-              <div class="form-check">
-                <input type="radio" name="send" id="premium" class="form-check-input">
-                <label for="premium" class="form-label">Premium de 2 a 5 dias (15%)</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" name="send" id="express" class="form-check-input">
-                <label for="express" class="form-label">Express de 5 a 8 dias (7%)</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" name="send" id="standard" class="form-check-input">
-                <label for="standard" class="form-label">Standard de 12 a 15 dias (5%)</label>
-              </div>
-          </div><!--Shipping-->
-          <div id="shippingAddress" class="col-6">
-            <p class="h4">Direccion de Envio</p>
-            <hr class="mt-2 mb-4">
-            <div class="d-flex">
-              <div class="mb-2">
-                  <label class="form-label">Direccion</label>
-                  <input type="text" name="address" class="form-control me-5">
-                  <label class="form-label">Numero</label>
-                  <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
-              </div>
-              <div class="mb-2 ms-2">
-                <label class="form-label ">Esquina</label>
-                <input type="text" name="corner" class="form-control">
+            <button type="button" class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Seleccionar Metodo de Pago
+            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Metodo de Pago</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="method" id="credit" checked>
+                        <label class="form-check-label" for="credit">Tarjeta de Credito</label>
+                        <hr class="w-75">
+                        <div class="d-flex">
+                          <div class="mb-2">
+                              <label class="form-label">Calle</label>
+                              <input type="text" name="address" class="form-control me-5">
+                              <label class="form-label">Numero</label>
+                              <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
+                          </div>
+                          <div class="mb-2 ms-2">
+                            <label class="form-label ">Esquina</label>
+                            <input type="text" name="corner" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="method" id="transfer">
+                        <label class="form-check-label" for="transfer">Transferencia bancaria</label>
+                        <hr class="w-75">
+                        <div>
+                          
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
               </div>
             </div>
-          </div><!--Address-->
-        </div><!--shippingType-->
-    </div>
+          </div><!--Modal-->
+          <button class="btn btn-success w-100">Comprar</button>
+        </div><!--Shop-->
+      </div><!--Row-->
+    </div><!--Container-->
   </main>
   <footer class="text-muted">
     <div class="container">
