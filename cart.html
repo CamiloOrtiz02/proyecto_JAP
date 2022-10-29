@@ -81,20 +81,22 @@
                 </div>
             </div><!--Shipping-->
             <div id="shippingAddress" class="col-6">
-              <p class="h4">Direccion de Envio</p>
-              <hr class="mt-2 mb-4">
-              <div class="d-flex">
-                <div class="mb-2">
+              <form novalidate>
+                <p class="h4">Direccion de Envio</p>
+                <hr class="mt-2 mb-4">
+                <div class="d-flex">
+                  <div class="mb-2">
                     <label class="form-label">Calle</label>
-                    <input type="text" name="address" class="form-control me-5">
+                    <input type="text" name="address" class="form-control me-5" minlength="1" required>
                     <label class="form-label mt-2">Numero</label>
-                    <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
+                    <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5" required>
+                  </div>
+                  <div class="mb-2 ms-2">
+                    <label class="form-label ">Esquina</label>
+                    <input type="text" name="corner" class="form-control" minlength="1" required>
+                  </div>
                 </div>
-                <div class="mb-2 ms-2">
-                  <label class="form-label ">Esquina</label>
-                  <input type="text" name="corner" class="form-control">
-                </div>
-              </div>
+              </form>
             </div><!--Address-->
           </div><!--shippingType-->
         </div> <!--Col-->
@@ -120,7 +122,7 @@
             </div>
           </div>
           <div class="mt-2">
-            <button type="button" class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button id="paymentMethod" type="button" class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               Seleccionar Metodo de Pago
             </button>
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -131,44 +133,45 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form action="">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="method" id="credit" checked>
-                        <label class="form-check-label" for="credit">Tarjeta de Credito</label>
+                        <input class="form-check-input" type="radio" name="method" id="inpCredit">
+                        <label class="form-check-label" for="inpCredit">Tarjeta de Credito</label>
                         <hr class="w-75">
                         <div class="d-flex">
                           <div class="mb-2">
-                              <label class="form-label">Calle</label>
-                              <input type="text" name="address" class="form-control me-5" placeholder="Calle...">
-                              <label class="form-label mt-3">Numero</label>
-                              <input type="number" name="number" min="1" value="1" class="form-control w-50 me-5">
+                              <label class="form-label">Numero de Tarjeta</label>
+                              <input id="creditNumber" type="text" name="address" class="form-control me-5" placeholder="Numero de Tarjeta">
+                              <label class="form-label mt-3">Codigo de Seg.</label>
+                              <input id="creditCode" type="text" name="number" class="form-control w-50 me-5" placeholder="Codigo...">
                           </div>
                           <div class="mb-2 ms-2">
-                            <label class="form-label">Esquina</label>
-                            <input type="text" name="corner" class="form-control" placeholder="Esquina...">
+                            <label class="form-label">Vencimiento (MM/AA)</label>
+                            <input id="creditVenc" type="text" name="corner" class="form-control" maxlength="5" placeholder="Vencimiento...">
                           </div>
                         </div>
                       </div>
 
                       <div class="form-check mt-4 mb-3">
-                        <input class="form-check-input" type="radio" name="method" id="transfer">
-                        <label class="form-check-label" for="transfer">Transferencia bancaria</label>
+                        <input class="form-check-input" type="radio" name="method" id="inpTransfer">
+                        <label class="form-check-label" for="inpTransfer">Transferencia bancaria</label>
                         <hr class="w-75">
                         <div>
-                          <label for="accountNumber" class="form-label">Numero de Cuenta</label>
+                          <div>
+                            <label for="accountNumber" class="form-label">Numero de Cuenta</label>
+                          </div>
+                          <input id="accountTransfer" type="text" class="form-control w-75" placeholder="Numero de cuenta...">
                         </div>
-                        <input type="text" class="form-control w-75" placeholder="Numero de cuenta...">
                       </div>
-                    </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                    <button id="btnModalAccept" type="button" class="btn btn-primary">Aceptar</button>
+                    <button id="btnValid" type="button" class="btn btn-primary" data-bs-dismiss="modal" hidden></button>
                   </div>
                 </div>
               </div>
             </div>
           </div><!--Modal-->
-          <button class="btn btn-success w-100">Comprar</button>
+          <button id="btnBuy" class="btn btn-success w-100">Comprar</button>
         </div><!--Shop-->
       </div><!--Row-->
     </div><!--Container-->

@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById('logOut').addEventListener('click', () => {
     localStorage.removeItem('isLogin');
+    localStorage.removeItem('arrArticles');
     window.location = "login.html";
   });
 });

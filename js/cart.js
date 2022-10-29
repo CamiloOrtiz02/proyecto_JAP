@@ -5,7 +5,9 @@ let typeShipping = "standard";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     if (articles.length > 0) {
-        showArticles();
+        for (const elem of articles) {
+            showArticles(elem);
+        }
     }else{
         document.getElementById('articles').innerHTML = 
         `
@@ -21,8 +23,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
 //! SHOW ARTICLES
-function showArticles() {
-    for (const elem of articles) {
+function showArticles(elem) {
         const inpNum = document.createElement('input');
         inpNum.type = "number";
         inpNum.min = "1";
@@ -75,7 +76,6 @@ function showArticles() {
         }else{
             subTotal += elem.unitCost;
         }
-    }
 }
 
 //! CALC SUBTOTAL OF ALL ARTICLES
@@ -121,4 +121,56 @@ document.getElementById('express').addEventListener('click', () => {
 document.getElementById('premium').addEventListener('click', () => {
     typeShipping = "premium";
     changeShipping();
+});
+
+document.getElementById('inpCredit').addEventListener('click', () => {
+    disableInputs(true);
+    document.getElementById('accountTransfer').classList.remove('border', 'border-danger');
+});
+
+document.getElementById('inpTransfer').addEventListener('click', () => {
+    disableInputs(false);
+    document.getElementById('creditNumber').classList.remove('border', 'border-danger');
+    document.getElementById('creditCode').classList.remove('border', 'border-danger');
+    document.getElementById('creditVenc').classList.remove('border', 'border-danger');
+});
+
+//! BTN BUY
+document.getElementById('btnBuy').addEventListener('click', ()=>{
+
+});
+
+//! MODAL
+
+function disableInputs(flag) {
+    document.getElementById('accountTransfer').disabled = flag;
+        document.getElementById('creditNumber').disabled = !flag;
+        document.getElementById('creditCode').disabled = !flag;
+        document.getElementById('creditVenc').disabled = !flag;
+}
+
+document.getElementById('btnModalAccept').addEventListener('click', () => {
+    if (document.getElementById('inpCredit').checked) {
+        validInput(document.getElementById('creditNumber'));
+        validInput(document.getElementById('creditCode'));
+        validInput(document.getElementById('creditVenc'));
+    }
+    
+    if (document.getElementById('inpTransfer').checked) {
+        validInput(document.getElementById('accountTransfer'));
+    }
+});
+
+function validInput(inp) {
+    if(inp.value.length == 0){
+        inp.classList.add('border', 'border-danger');
+    }else{
+        inp.classList.remove('border', 'border-danger');
+    }
+}
+
+document.getElementById('creditVenc').addEventListener('input', (e)=>{
+    if (e.target.value.length == 2) {
+        e.target.value += "/";
+    }
 });
