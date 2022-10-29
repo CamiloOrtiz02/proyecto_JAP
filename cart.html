@@ -87,7 +87,7 @@
                 <div class="mb-2">
                     <label class="form-label">Calle</label>
                     <input type="text" name="address" class="form-control me-5">
-                    <label class="form-label">Numero</label>
+                    <label class="form-label mt-2">Numero</label>
                     <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
                 </div>
                 <div class="mb-2 ms-2">
@@ -139,28 +139,30 @@
                         <div class="d-flex">
                           <div class="mb-2">
                               <label class="form-label">Calle</label>
-                              <input type="text" name="address" class="form-control me-5">
-                              <label class="form-label">Numero</label>
-                              <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5">
+                              <input type="text" name="address" class="form-control me-5" placeholder="Calle...">
+                              <label class="form-label mt-3">Numero</label>
+                              <input type="number" name="number" min="1" value="1" class="form-control w-50 me-5">
                           </div>
                           <div class="mb-2 ms-2">
-                            <label class="form-label ">Esquina</label>
-                            <input type="text" name="corner" class="form-control">
+                            <label class="form-label">Esquina</label>
+                            <input type="text" name="corner" class="form-control" placeholder="Esquina...">
                           </div>
                         </div>
                       </div>
 
-                      <div class="form-check">
+                      <div class="form-check mt-4 mb-3">
                         <input class="form-check-input" type="radio" name="method" id="transfer">
                         <label class="form-check-label" for="transfer">Transferencia bancaria</label>
                         <hr class="w-75">
                         <div>
-                          
+                          <label for="accountNumber" class="form-label">Numero de Cuenta</label>
                         </div>
+                        <input type="text" class="form-control w-75" placeholder="Numero de cuenta...">
                       </div>
                     </form>
                   </div>
                   <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
                   </div>
                 </div>
               </div>
