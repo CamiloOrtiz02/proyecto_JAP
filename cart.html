@@ -80,20 +80,20 @@
                   <label for="standard" class="form-label">Standard de 12 a 15 dias (5%)</label>
                 </div>
             </div><!--Shipping-->
-            <div id="shippingAddress" class="col-6">
+            <div id="shippingAddress" class="col-7">
               <form novalidate>
                 <p class="h4">Direccion de Envio</p>
                 <hr class="mt-2 mb-4">
                 <div class="d-flex">
                   <div class="mb-2">
                     <label class="form-label">Calle</label>
-                    <input type="text" name="address" class="form-control me-5" minlength="1" required>
+                    <input type="text" name="address" class="form-control me-5" minlength="1" placeholder="Ingrese una calle..." required>
                     <label class="form-label mt-2">Numero</label>
                     <input type="number" name="number" min="1" value="1" class="form-control w-75 me-5" required>
                   </div>
                   <div class="mb-2 ms-2">
                     <label class="form-label ">Esquina</label>
-                    <input type="text" name="corner" class="form-control" minlength="1" required>
+                    <input type="text" name="corner" class="form-control" minlength="1" placeholder="Ingrese una esquina..." required>
                   </div>
                 </div>
               </form>
@@ -137,7 +137,7 @@
                         <input class="form-check-input" type="radio" name="method" id="inpCredit">
                         <label class="form-check-label" for="inpCredit">Tarjeta de Credito</label>
                         <hr class="w-75">
-                        <div class="d-flex">
+                        <div id="divCredit" class="d-flex">
                           <div class="mb-2">
                               <label class="form-label">Numero de Tarjeta</label>
                               <input id="creditNumber" type="text" name="address" class="form-control me-5" placeholder="Numero de Tarjeta">
@@ -155,7 +155,7 @@
                         <input class="form-check-input" type="radio" name="method" id="inpTransfer">
                         <label class="form-check-label" for="inpTransfer">Transferencia bancaria</label>
                         <hr class="w-75">
-                        <div>
+                        <div id="transferInputs">
                           <div>
                             <label for="accountNumber" class="form-label">Numero de Cuenta</label>
                           </div>
@@ -164,17 +164,33 @@
                       </div>
                   </div>
                   <div class="modal-footer">
+                    <p id="chooseOption" class="text text-danger" hidden>Debe elegir un campo</p>
                     <button id="btnModalAccept" type="button" class="btn btn-primary">Aceptar</button>
                     <button id="btnValid" type="button" class="btn btn-primary" data-bs-dismiss="modal" hidden></button>
                   </div>
                 </div>
               </div>
             </div>
-          </div><!--Modal-->
+          </div><!--Modal Buy-->
           <button id="btnBuy" class="btn btn-success w-100">Comprar</button>
         </div><!--Shop-->
       </div><!--Row-->
     </div><!--Container-->
+    <!-- Button trigger modal -->
+    <button id="openModalOk" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden></button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body bg-success text-white">
+            <p>Compra completada</p>
+          </div>
+          <div class="modal-footer" hidden>
+            <button id="closeModalOk" type="button" class="btn btn-secondary" data-bs-dismiss="modal"></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -198,5 +214,4 @@
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
 </body>
-
 </html>
