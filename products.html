@@ -41,7 +41,7 @@
       <p class= "lead">Veras aqui todos los productos de categoria <span id="catNameHeader"></span></p>
   </div>
   <div class="row">
-    <div class="col text-end">
+    <div class="col text-end pe-4">
       <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
         <input type="radio" class="btn-check" name="options" id="sortAsc">
         <label class="btn btn-outline-dark" for="sortAsc" id="labelSortAsc" title="Ordenar precio de mayor a menor"><i class="fas fa-sort-numeric-up"></i>$</label>
@@ -53,22 +53,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12 col-md-12 mb-1 container">
-      <div class="row container p-0 m-0">
-        <div class="col-auto d-flex">
+    <div class="col-lg-12 col-md-9 mb-1 container">
+      <div class="row justify-content-end container p-0 m-0">
+        <div class="col-auto d-flex my-auto">
           <label for="searchProduct" class="btn disabled" ><i class="fas fa-search"></i></label>
           <input id="searchProduct" type="text" class="form-control" placeholder="Buscar...">
         </div>
-        <div class="col offset-lg-2">
+        <div class="col d-flex justify-content-end me-2">
           <p class="font-weight-normal text-end my-2">Precio:</p>
+          <input class="form-control mx-1" type="number" placeholder="min." min="0" id="rangeFilterCountMin">
+          <input class="form-control" type="number" placeholder="max." min="0" id="rangeFilterCountMax">
         </div>
-        <div class="col">
-          <input class="form-control" type="number" placeholder="min." min="0" id="rangeFilterCountMin">
-        </div>
-        <div class="col">
-          <input class="form-control" type="number" placeholder="máx." min="0" id="rangeFilterCountMax">
-        </div>
-        <div class="col p-0">
+        <div class="col-auto pe-4 my-auto">
           <div class="btn-group" role="group">
             <button class="btn btn-outline-primary btn-block" id="rangeFilterCount">Filtrar</button>
             <button class="btn btn-outline-primary btn-sm" id="clearRangeFilter">Limpiar</button>
