@@ -38,9 +38,11 @@
   <main>
     <div class="container mt-5">
       <div class="row border bg-light">
-        <div id="smallImgs" class="col-1 mt-3"></div>
-        <div id="largeImg" class="col-7 mt-3"></div>
-        <div id="descProd" class="col-4 mw-100 mt-3">
+        <div class="col-auto col-lg-1 mt-3 m-auto">
+          <div id="smallImgs" class="row row-cols-md-auto row-cols-lg-1"></div>
+        </div>
+        <div id="largeImg" class="col-auto col-lg-7 mt-3 mw-100"></div>
+        <div id="descProd" class="col-12 col-md-4 mw-100 mt-3">
           <div class="border-bottom mb-4">
             <h2 id="prodName" class="text-primary text-decoration-underline fw-bold"></h2>
           </div>
@@ -68,10 +70,10 @@
       </div> <!--ROW-->
       <div class="row mt-5 border bg-light">
         <h2 class="text-decoration-underline">Productos Relacionados</h2>
-        <div id="prodList" class="list-group list-group-horizontal text-center"></div>
+        <div id="prodList" class="list-group list-group-horizontal text-center shadow-sm overflow-auto"></div>
       </div>
       <div class="row mt-5 bg-light">
-        <div class="col">
+        <div class="col-lg">
           <h4 class="p-2 border mb-0 fw-bold text-secondary text-center">Comentarios</h4>
           <div id="prodComments" class="list-group overflow-auto w-100 border">
           </div>

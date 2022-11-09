@@ -3,7 +3,7 @@ const  exp = {
     min: /[a-z]/,
     num: /[0-9]/,
     mayus: /[A-Z]/,
-    esp: /[\@\#\!\¡.\:\-_\^\(\)\=\&\+]/,
+    esp: /[\@\#\!\¡\.\:\-\_\^\(\)\=\&\+\$\,\;\<\>\?\/\\]/,
 }
 
 //! Expresion regular para el correo

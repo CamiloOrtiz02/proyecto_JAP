@@ -219,3 +219,15 @@ a.custom-card:hover {
 #largeImg{
   min-width: 395px;
 }
+
+#rangeFilterCountMin, #rangeFilterCountMax{
+  width: 90px;
+}
+
+.img-icon{
+  max-width: 90px;
+}
+
+.mw-max-content{
+  min-width: max-content !important;
+}

@@ -19,36 +19,40 @@
 <body>
   <main class="mt-5">
     <div class="container text-center form-signing">
-        <img src = "img/login.png" alt="login.png" class="w-50">
-        <h1 class="fw-bolder h4">Iniciar Sesión</h1>
-        <br>
-        <form>
-          <label for="user" class="h5 fw-normal">Correo Electronico</label>
-          <br>
-            <input type="email" name="user" id="mailID" class="form-control w-25 m-auto">
-            <p id="emailAlert" class="alert-danger m-auto w-25 visually-hidden">Correo invalido</p>
-          <br><br>
-          <label for="pass" class="h5 fw-normal">Contraseña: </label>
-          <br>
-            <input type="password" name="pass" minlength="8" id="passID" class="form-control w-25 m-auto">
-            <p id = 'passAlert' class="alert-danger m-auto w-25 visually-hidden">Contraseña Incorrecta</p>
-            <!--
-            Se utilizara para el registro
-
-            <div id="alertBox" class="alert-danger m-auto w-50 visually-hidden">
-                <p class="fw-bolder text-decoration-underline h6">Requerimientos: </p>
-                <ul id="list" class=" small text-start">
-                  <li id="0" class ="text-danger fw-bold p-2">8 caracteres</li>
-                  <li id="1" class ="text-danger fw-bold p-2">1 Mayuscula</li>
-                  <li id="2" class ="text-danger fw-bold p-2">1 Minuscula</li>
-                  <li id="3" class ="text-danger fw-bold p-2">1 Simbolo</li>
-                  <li id="4" class ="text-danger fw-bold p-2">1 Numero</li>
-              </ul>
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-9 col-lg-6">
+          <img src = "img/login.png" alt="login.png" class="w-75">
+          <h1 class="fw-bolder h4 mb-4">Iniciar Sesión</h1>
+          <form>
+            <div class="row justify-content-center">
+              <div class="col-9 col-md-6">
+                <label for="user" class="h5 fw-normal mb-3">Correo Electronico</label>
+                <input type="email" name="user" id="mailID" class="form-control">
+                <p id="emailAlert" class="alert-danger m-auto visually-hidden">Correo invalido</p>
+                
+                <label for="pass" class="h5 fw-normal my-3">Contraseña: </label>
+                <input type="password" name="pass" minlength="8" id="passID" class="form-control">
+                <p id = 'passAlert' class="alert-danger m-auto visually-hidden">Contraseña Incorrecta</p>
+                <!--
+                Se utilizara para el registro
+    
+                <div id="alertBox" class="alert-danger m-auto w-50 visually-hidden">
+                    <p class="fw-bolder text-decoration-underline h6">Requerimientos: </p>
+                    <ul id="list" class=" small text-start">
+                      <li id="0" class ="text-danger fw-bold p-2">8 caracteres</li>
+                      <li id="1" class ="text-danger fw-bold p-2">1 Mayuscula</li>
+                      <li id="2" class ="text-danger fw-bold p-2">1 Minuscula</li>
+                      <li id="3" class ="text-danger fw-bold p-2">1 Simbolo</li>
+                      <li id="4" class ="text-danger fw-bold p-2">1 Numero</li>
+                    </ul>
+                  </div>
+                -->
+              <button type="submit" id="btnSubmit" class="btn btn-lg btn-success mt-4">Ingresar</button>
             </div>
-            -->
-          <br>
-          <button type="submit" id="btnSubmit" class="btn btn-lg btn-success">Ingresar</button>
-        </form>
+          </div>
+          </form>
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">

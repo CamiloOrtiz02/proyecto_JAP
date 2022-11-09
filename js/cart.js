@@ -198,7 +198,7 @@ function validInput(inp) {
     return result;
 }
 
-document.getElementById('creditVenc').addEventListener('input', (e)=>{
+document.getElementById('creditVenc').addEventListener('keypress', (e)=>{
     if (e.target.value.length == 2) {
         e.target.value += "/";
     }

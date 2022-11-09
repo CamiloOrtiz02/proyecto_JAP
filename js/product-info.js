@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const imageDefault = document.createElement('img');
         
-        imageDefault.classList.add('img-thumbnail', 'shadow-sm');
+        imageDefault.classList.add('img-thumbnail', 'shadow-sm', 'w-100');
         imageDefault.setAttribute('src', pInfo.images[0]);
         document.getElementById('largeImg').appendChild(imageDefault);
 
@@ -79,12 +79,15 @@ document.getElementById('delCart').addEventListener('click', () => {
 // SHOW SMALL IMAGES
 function showSmallImages(images){
     for (const elem of images) {
+        let container = document.createElement('div');
+        container.classList.add('col', 'text-center');
         let imgs = document.createElement('img');
+        imgs.classList.add('img-thumbnail', 'img-icon', 'shadow-sm');
         imgs.setAttribute('src', elem);
-        imgs.classList.add('img-thumbnail', 'shadow-sm');
-        document.getElementById('smallImgs').appendChild(imgs);
+        container.appendChild(imgs);
+        document.getElementById('smallImgs').appendChild(container);
 
-        imgs.addEventListener('click', () => {
+        container.addEventListener('click', () => {
             document.getElementById('largeImg').innerHTML = `
             <img src="${imgs.src}" class="img-thumbnail">
             `;
@@ -96,9 +99,9 @@ function showSmallImages(images){
 function showProdsRelated(related){
     for (const elem of related) {
         let prodRel = document.createElement('div');
-        prodRel.classList.add('list-group-item', 'list-group-item-action', 'w-25', 'ms-3', 'border', 'm-2');
+        prodRel.classList.add('list-group-item', 'list-group-item-action', 'w-25', 'ms-3', 'border', 'm-2', 'mw-max-content', 'd-flex', 'align-items-center');
         prodRel.innerHTML = `
-            <img src="${elem.image}" class="img-thumbnail">
+            <img src="${elem.image}" class="img-thumbnail img-icon">
             <p class="h4">${elem.name}</p>
         `
         document.getElementById('prodList').appendChild(prodRel);
