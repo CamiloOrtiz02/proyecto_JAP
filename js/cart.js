@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             </tr>
         `;
     }
-    //! SHOW BY DEFAULT
+    //! SHOW COSTS
     document.getElementById('totalUnit').textContent = subTotal;
     document.getElementById('shippingCost').textContent = Math.round(subTotal * 0.05);
     document.getElementById('total').textContent = subTotal + Math.round(subTotal * 0.05);
@@ -135,6 +135,14 @@ document.getElementById('inpTransfer').addEventListener('click', () => {
     document.getElementById('creditVenc').classList.remove('border', 'border-danger');
 });
 
+//! DISABLED INPUTS OF MODAL
+function disableInputs(disabled) {
+    document.getElementById('accountTransfer').disabled = disabled;
+        document.getElementById('creditNumber').disabled = !disabled;
+        document.getElementById('creditCode').disabled = !disabled;
+        document.getElementById('creditVenc').disabled = !disabled;
+}
+
 //! BTN BUY
 document.getElementById('btnBuy').addEventListener('click', ()=>{
     if (validInput(document.querySelectorAll('#shippingAddress input'))) {
@@ -153,13 +161,6 @@ document.getElementById('btnBuy').addEventListener('click', ()=>{
     }
 });
 
-//! DISABLED INPUTS OF MODAL
-function disableInputs(disabled) {
-    document.getElementById('accountTransfer').disabled = disabled;
-        document.getElementById('creditNumber').disabled = !disabled;
-        document.getElementById('creditCode').disabled = !disabled;
-        document.getElementById('creditVenc').disabled = !disabled;
-}
 
 document.getElementById('btnModalAccept').addEventListener('click', () => {
     if (document.getElementById('inpCredit').checked) {
