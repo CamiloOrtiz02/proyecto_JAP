@@ -6,8 +6,6 @@ const  exp = {
     esp: /[\@\#\!\¡\.\:\-\_\^\(\)\=\&\+\$\,\;\<\>\?\/\\]/,
 }
 
-//! Expresion regular para el correo
-const emailExp = /^[a-zA-Z0-9\.\_\-\+\&\#]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
 
 //! elemento BUTTON
 const btnSubmit = document.getElementById('btnSubmit');

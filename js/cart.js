@@ -136,17 +136,19 @@ document.getElementById('inpTransfer').addEventListener('click', () => {
 });
 
 //! DISABLED INPUTS OF MODAL
-function disableInputs(disabled) {
-    document.getElementById('accountTransfer').disabled = disabled;
-        document.getElementById('creditNumber').disabled = !disabled;
-        document.getElementById('creditCode').disabled = !disabled;
-        document.getElementById('creditVenc').disabled = !disabled;
+function disableInputs(flag) {
+    document.getElementById('accountTransfer').disabled = flag;
+    document.getElementById('creditNumber').disabled = !flag
+    document.getElementById('creditCode').disabled = !flag;
+    document.getElementById('creditVenc').disabled = !flag;
 }
 
 //! BTN BUY
 document.getElementById('btnBuy').addEventListener('click', ()=>{
     if (validInput(document.querySelectorAll('#shippingAddress input'))) {
-        shippingAddressValidation = true
+        if (validate(document.getElementById('inpNumber'), parseInt(document.getElementById('inpNumber').value) > 0)) {
+            shippingAddressValidation = true
+        }
     }
 
     if (!modalValidation) {
@@ -163,11 +165,9 @@ document.getElementById('btnBuy').addEventListener('click', ()=>{
 
 
 document.getElementById('btnModalAccept').addEventListener('click', () => {
-    if (document.getElementById('inpCredit').checked) {
-        if (validInput(document.querySelectorAll('#divCredit input'))) {
+    if (document.getElementById('inpCredit').checked && validInput(document.querySelectorAll('#divCredit input'))) {
             document.getElementById('btnValid').click();
             modalValidation = true;
-        }
     }
     
     if (document.getElementById('inpTransfer').checked) {
@@ -181,22 +181,6 @@ document.getElementById('btnModalAccept').addEventListener('click', () => {
         modalValidation = false;
     }
 });
-
-//! VALID INPUTS
-function validInput(inp) {
-    let result = true;
-    for (const elem of inp) {
-        let validation = true;
-        validation = validation && (elem.value.length > 0 || elem.value > 0);
-        if (!validation) {
-            elem.classList.add('border', 'border-danger');
-        }else{
-            elem.classList.remove('border', 'border-danger');
-        }
-        result = result && validation;
-    }
-    return result;
-}
 
 document.getElementById('creditVenc').addEventListener('keypress', (e)=>{
     if (e.target.value.length == 2) {

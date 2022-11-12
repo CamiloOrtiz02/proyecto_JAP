@@ -7,6 +7,9 @@ const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
 
+//! Expresion regular para el correo
+const emailExp = /^[a-zA-Z0-9\.\_\-\+\&\#]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -64,3 +67,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+//! VALID INPUTS
+function validInput(inp) {
+  let result = true;
+  for (const elem of inp) {
+    result = validate(elem, (elem.value.length > 0 || elem.value > 0)) && result;
+  }
+  return result;
+}
+
+function validate(elem, exp) {
+  console.log(elem, exp, elem.value)
+  if (!exp) { 
+    elem.classList.remove('is-valid');
+    elem.classList.add('is-invalid');
+  }else{
+    elem.classList.remove('is-invalid');
+    elem.classList.add('is-valid');
+  }
+  return exp;
+}
