@@ -3,7 +3,6 @@ const INPUTS_REQUIREDS = document.querySelectorAll("input.required");
 
 document.addEventListener('DOMContentLoaded', ()=>{
     showData();
-    
 });
 
 function showData() {
@@ -18,10 +17,6 @@ function showData() {
 
 document.getElementById("saveChanges").addEventListener('click', (e)=>{
     e.preventDefault();
-
-    //! VALIDACION DE INPUTS OBLIGATORIOS
-    
-
     //! SAVE CHANGES
     if (validInput(INPUTS_REQUIREDS)) {
         let data = {

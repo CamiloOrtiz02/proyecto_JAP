@@ -43,6 +43,8 @@ let getJSONData = function(url){
     });
 }
 
+// <= === >= => 
+
 document.addEventListener("DOMContentLoaded", () => {
   
   document.getElementById('user').insertAdjacentHTML('afterbegin',
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function validInput(inp) {
   let result = true;
   for (const elem of inp) {
-    result = validate(elem, (elem.value.length > 0 || elem.value > 0)) && result;
+    result = (validate(elem, (elem.value.length > 0 || elem.value > 0)) && result);
   }
   return result;
 }
